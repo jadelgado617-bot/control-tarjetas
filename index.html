@@ -7,146 +7,148 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-    --bg: #f8f9fa; 
-    --surface: #ffffff; 
-    --surface2: #f1f3f5;
-    --border: #dee2e6;
-    --text: #000000; 
-    --text2: #495057;
-    --text3: #868e96;
-    
-    /* Colores Nu Bank */
-    --nu: #820ad1; 
-    --nu-bg: #f3e8fd; 
-    --nu-text: #5a0a92;
-    
-    /* Colores Bancolombia Oficial */
-    --bc: #fdda24;
-    --bc-bg: #fffce6;
-    --bc-text: #000000;
-    
-    --green: #28a745;
-    --green-bg: #e8f5e9;
-    --red: #dc3545;
-    --red-bg: #fdecea;
-    --amber: #e67e00;
-    --amber-bg: #fff3e0;
+  --bg: #f8f9fa; --surface: #ffffff; --surface2: #f1f3f5; --border: #dee2e6;
+  --text: #000000; --text2: #495057; --text3: #868e96;
+  --nu: #820ad1; --nu-bg: #f3e8fd; --nu-text: #5a0a92;
+  --bc: #fdda24; --bc-bg: #fffce6; --bc-text: #000000;
+  --green: #28a745; --green-bg: #e8f5e9;
+  --red: #dc3545; --red-bg: #fdecea;
+  --amber: #e67e00; --amber-bg: #fff3e0;
+  --radius: 8px; --radius-lg: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+header h1 { font-size: 17px; font-weight: 600; }
+.header-badges { display: flex; gap: 6px; margin-left: auto; flex-wrap: wrap; }
+.pill { padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 500; }
+.pill-nu { background: var(--nu-bg); color: var(--nu-text); }
+.pill-bc { background: var(--bc-bg); color: var(--bc-text); }
+nav { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; }
+nav button { padding: 12px 18px; font-size: 14px; font-family: 'DM Sans', sans-serif; font-weight: 400; background: none; border: none; border-bottom: 2px solid transparent; color: var(--text2); cursor: pointer; white-space: nowrap; }
+nav button.active { color: var(--text); border-bottom-color: var(--nu); font-weight: 600; }
+main { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+.section { display: none; }
+.section.active { display: block; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+.stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.stat-label { font-size: 12px; color: var(--text2); margin-bottom: 4px; }
+.stat-value { font-size: 20px; font-weight: 600; font-family: 'DM Mono', monospace; }
+.stat-sub { font-size: 11px; color: var(--text3); margin-top: 3px; }
+.stat.highlight { border-color: var(--amber); background: var(--amber-bg); }
+.stat.highlight .stat-value { color: var(--amber); }
+.stat.paid { border-color: var(--green); background: var(--green-bg); }
+.stat.paid .stat-value { color: var(--green); }
+.tc-block { margin-bottom: 2rem; }
+.tc-title { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+thead { background: var(--surface2); }
+th { text-align: left; padding: 10px 12px; font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; }
+td { padding: 10px 12px; border-top: 1px solid var(--border); color: var(--text); vertical-align: middle; }
+tfoot td { background: var(--surface2); font-weight: 600; border-top: 2px solid var(--border); }
+tr:hover td { background: var(--surface2); }
+.badge { display: inline-block; padding: 3px 8px; border-radius: 100px; font-size: 11px; font-weight: 500; }
+.b-ok { background: var(--green-bg); color: var(--green); }
+.b-warn { background: var(--amber-bg); color: var(--amber); }
+.b-info { background: #e8f4fd; color: #0a5c8a; }
+.b-nu { background: var(--nu-bg); color: var(--nu-text); }
+.b-bc { background: var(--bc-bg); color: var(--bc-text); }
+.quinc { font-size: 11px; padding: 2px 7px; border-radius: 4px; background: #e8f4fd; color: #0a5c8a; font-family: 'DM Mono', monospace; }
+.form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.form-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+.field label { font-size: 13px; color: var(--text2); display: block; margin-bottom: 5px; font-weight: 500; }
+.field input, .field select { width: 100%; padding: 9px 12px; font-size: 14px; font-family: 'DM Sans', sans-serif; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); outline: none; }
+.field input:focus, .field select:focus { border-color: #999; }
+.btn-primary { width: 100%; padding: 11px; background: var(--text); color: var(--bg); border: none; border-radius: var(--radius); font-size: 14px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; }
+.btn-primary:hover { opacity: 0.85; }
+.btn-nu { background: var(--nu); color: #fff; border: none; border-radius: var(--radius); font-size: 14px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; width: 100%; padding: 11px; box-shadow: 0 4px 10px rgba(130,10,209,0.2); }
+.btn-bc { background: var(--bc); color: #000; font-weight: 700; border: none; border-radius: var(--radius); font-size: 14px; font-family: 'DM Sans', sans-serif; cursor: pointer; width: 100%; padding: 11px; box-shadow: 0 4px 10px rgba(253,218,36,0.3); }
+.btn-nu:hover, .btn-bc:hover { opacity: 0.85; }
+.btn-green { background: var(--green); color: #fff; border: none; border-radius: var(--radius); font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; padding: 8px 14px; }
+.btn-red { background: var(--red); color: #fff; border: none; border-radius: var(--radius); font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; padding: 8px 14px; }
+.btn-outline { background: transparent; color: var(--text2); border: 1px solid var(--border); border-radius: var(--radius); font-size: 13px; font-family: 'DM Sans', sans-serif; cursor: pointer; padding: 8px 14px; }
+.btn-outline:hover { background: var(--surface2); }
+.msg { font-size: 13px; margin-top: 10px; min-height: 18px; font-weight: 500; }
+.info-bar { padding: 10px 14px; border-radius: var(--radius); font-size: 13px; margin-bottom: 1rem; line-height: 1.6; }
+.info-nu { background: var(--nu-bg); color: var(--nu-text); border-left: 3px solid var(--nu); }
+.info-bc { background: var(--bc-bg); color: var(--bc-text); border-left: 3px solid var(--bc); }
+.pago-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 1.5rem; }
+.pago-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; }
+.pago-card-nu { border-top: 3px solid var(--nu); }
+.pago-card-bc { border-top: 3px solid var(--bc); }
+.pago-card-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px; }
+.saldo-display { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.saldo-label { font-size: 12px; color: var(--text2); margin-bottom: 2px; }
+.saldo-valor { font-size: 26px; font-weight: 600; font-family: 'DM Mono', monospace; }
+.saldo-nu { color: var(--nu); }
+.saldo-bc { color: var(--bc); }
+.saldo-zero { color: var(--green); }
+.field-sm { margin-bottom: 10px; }
+.field-sm label { font-size: 12px; color: var(--text2); display: block; margin-bottom: 4px; font-weight: 500; }
+.field-sm input, .field-sm select { width: 100%; padding: 8px 10px; font-size: 13px; font-family: 'DM Sans', sans-serif; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); outline: none; }
+.pago-hist-title { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 14px; margin-bottom: 6px; }
+.pago-item { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-top: 1px solid var(--border); }
+.pago-item-info { font-size: 13px; color: var(--text); }
+.pago-item-fecha { font-size: 11px; color: var(--text3); margin-top: 1px; }
+.pago-item-val { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--green); }
+.del-btn { background: none; border: none; color: var(--text3); cursor: pointer; font-size: 14px; padding: 2px 5px; border-radius: 4px; }
+.del-btn:hover { color: var(--red); background: var(--red-bg); }
+.ciclo-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 10px; }
+.ciclo-card.ciclo-pagado { border-left: 3px solid var(--green); background: var(--green-bg); }
+.ciclo-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
+.ciclo-key { font-size: 15px; font-weight: 600; font-family: 'DM Mono', monospace; }
+.ciclo-total { font-size: 22px; font-weight: 600; font-family: 'DM Mono', monospace; margin: 4px 0 2px; }
+.ciclo-meta { font-size: 12px; color: var(--text2); margin-bottom: 8px; }
+.cats { display: flex; flex-wrap: wrap; gap: 6px; }
+.cat-chip { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: var(--surface2); color: var(--text2); border: 1px solid var(--border); }
+.divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+.empty { text-align: center; padding: 2.5rem; color: var(--text3); font-size: 14px; background: var(--surface); border-radius: var(--radius); border: 1px dashed var(--border); }
 
-    --radius: 8px;
-    --radius-lg: 12px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; display: flex; align-items: center; gap: 12px; }
-  header h1 { font-size: 17px; font-weight: 600; }
-  .header-badges { display: flex; gap: 6px; margin-left: auto; flex-wrap: wrap; }
-  .pill { padding: 4px 10px; border-radius: 100px; font-size: 12px; font-weight: 500; }
-  .pill-nu { background: var(--nu-bg); color: var(--nu-text); }
-  .pill-bc { background: var(--bc-bg); color: var(--bc-text); }
-  nav { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; }
-  nav button { padding: 12px 18px; font-size: 14px; font-family: 'DM Sans', sans-serif; font-weight: 400; background: none; border: none; border-bottom: 2px solid transparent; color: var(--text2); cursor: pointer; white-space: nowrap; }
-  nav button.active { color: var(--text); border-bottom-color: var(--text); font-weight: 500; }
-  main { max-width: 820px; margin: 0 auto; padding: 1.5rem; }
-  .section { display: none; }
-  .section.active { display: block; }
-  .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
-  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
-  .stat-label { font-size: 12px; color: var(--text2); margin-bottom: 4px; }
-  .stat-value { font-size: 20px; font-weight: 600; font-family: 'DM Mono', monospace; }
-  .stat-sub { font-size: 11px; color: var(--text3); margin-top: 3px; }
-  .stat.highlight { border-color: var(--amber); background: var(--amber-bg); }
-  .stat.highlight .stat-value { color: var(--amber); }
-  .stat.paid { border-color: var(--green); background: var(--green-bg); }
-  .stat.paid .stat-value { color: var(--green); }
-  .tc-block { margin-bottom: 2rem; }
-  .tc-title { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
-  thead { background: var(--surface2); }
-  th { text-align: left; padding: 10px 12px; font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; }
-  td { padding: 10px 12px; border-top: 1px solid var(--border); color: var(--text); vertical-align: middle; }
-  tfoot td { background: var(--surface2); font-weight: 600; border-top: 2px solid var(--border); }
-  tr:hover td { background: var(--surface2); }
-  .badge { display: inline-block; padding: 3px 8px; border-radius: 100px; font-size: 11px; font-weight: 500; }
-  .b-ok { background: var(--green-bg); color: var(--green); }
-  .b-warn { background: var(--amber-bg); color: var(--amber); }
-  .b-info { background: #e8f4fd; color: #0a5c8a; }
-  .b-nu { background: var(--nu-bg); color: var(--nu-text); }
-  .b-bc { background: var(--bc-bg); color: var(--bc-text); }
-  .quinc { font-size: 11px; padding: 2px 7px; border-radius: 4px; background: #e8f4fd; color: #0a5c8a; font-family: 'DM Mono', monospace; }
-  .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-  .form-grid.three { grid-template-columns: 1fr 1fr 1fr; }
-  .field label { font-size: 13px; color: var(--text2); display: block; margin-bottom: 5px; font-weight: 500; }
-  .field input, .field select { width: 100%; padding: 9px 12px; font-size: 14px; font-family: 'DM Sans', sans-serif; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); outline: none; }
-  .field input:focus, .field select:focus { border-color: #999; }
-  .btn-primary { width: 100%; padding: 11px; background: var(--text); color: var(--bg); border: none; border-radius: var(--radius); font-size: 14px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; }
-  .btn-primary:hover { opacity: 0.85; }
-  .btn-nu { 
-    background: var(--nu); 
-    color: #fff; 
-    box-shadow: 0 4px 10px rgba(130, 10, 209, 0.2); 
-  }
-  
-  .btn-bc { 
-    background: var(--bc); 
-    color: #000; /* Texto negro sobre fondo amarillo */
-    font-weight: 700;
-    box-shadow: 0 4px 10px rgba(253, 218, 36, 0.3);
-  }
-  .btn-nu:hover, .btn-bc:hover { opacity: 0.85; }
-  .msg { font-size: 13px; margin-top: 10px; min-height: 18px; font-weight: 500; }
-  .info-bar { padding: 10px 14px; border-radius: var(--radius); font-size: 13px; margin-bottom: 1rem; line-height: 1.6; }
-  .info-nu { background: var(--nu-bg); color: var(--nu-text); border-left: 3px solid var(--nu); }
-  .info-bc { background: var(--bc-bg); color: var(--bc-text); border-left: 3px solid var(--bc); }
-  .pago-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 1.5rem; }
-  .pago-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; }
-  .pago-card-nu { border-top: 3px solid var(--nu); }
-  .pago-card-bc { border-top: 3px solid var(--bc); }
-  .pago-card-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 12px; }
-  .saldo-display { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
-  .saldo-label { font-size: 12px; color: var(--text2); margin-bottom: 2px; }
-  .saldo-valor { font-size: 26px; font-weight: 600; font-family: 'DM Mono', monospace; }
-  .saldo-nu { color: var(--nu); }
-  .saldo-bc { color: var(--bc); }
-  .saldo-zero { color: var(--green); }
-  .field-sm { margin-bottom: 10px; }
-  .field-sm label { font-size: 12px; color: var(--text2); display: block; margin-bottom: 4px; font-weight: 500; }
-  .field-sm input { width: 100%; padding: 8px 10px; font-size: 13px; font-family: 'DM Sans', sans-serif; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); color: var(--text); outline: none; }
-  .pago-hist-title { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 14px; margin-bottom: 6px; }
-  .pago-item { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-top: 1px solid var(--border); }
-  .pago-item-info { font-size: 13px; color: var(--text); }
-  .pago-item-fecha { font-size: 11px; color: var(--text3); margin-top: 1px; }
-  .pago-item-val { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--green); }
-  .del-btn { background: none; border: none; color: var(--text3); cursor: pointer; font-size: 14px; padding: 2px 5px; border-radius: 4px; }
-  .del-btn:hover { color: var(--red); background: var(--red-bg); }
-  .ciclo-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 10px; }
-  .ciclo-card.ciclo-pagado { border-left: 3px solid var(--green); background: var(--green-bg); }
-  .ciclo-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; }
-  .ciclo-key { font-size: 15px; font-weight: 600; font-family: 'DM Mono', monospace; }
-  .ciclo-total { font-size: 22px; font-weight: 600; font-family: 'DM Mono', monospace; margin: 4px 0 2px; }
-  .ciclo-meta { font-size: 12px; color: var(--text2); margin-bottom: 8px; }
-  .cats { display: flex; flex-wrap: wrap; gap: 6px; }
-  .cat-chip { font-size: 11px; padding: 3px 8px; border-radius: 4px; background: var(--surface2); color: var(--text2); border: 1px solid var(--border); }
-  .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
-  .empty { text-align: center; padding: 2.5rem; color: var(--text3); font-size: 14px; background: var(--surface); border-radius: var(--radius); border: 1px dashed var(--border); }
-  @media (max-width: 600px) {
-    .form-grid, .form-grid.three, .pago-grid { grid-template-columns: 1fr; }
-    .grid-4 { grid-template-columns: 1fr 1fr; }
-    th:nth-child(7), td:nth-child(7), th:nth-child(8), td:nth-child(8) { display: none; }
-    main { padding: 1rem; }
-    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  }
-  #loading-overlay {
-    position: fixed; inset: 0; background: rgba(255,255,255,0.92);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    z-index: 9999; gap: 12px; font-size: 14px; color: var(--text2);
-  }
-  .spinner {
-    width: 32px; height: 32px; border: 3px solid var(--border);
-    border-top-color: var(--nu); border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
+/* ── CAJITAS ── */
+.cajitas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 1.5rem; }
+.cajita-card { background: var(--nu-bg); border: 1.5px solid #c084fc; border-radius: var(--radius-lg); padding: 1.25rem; position: relative; }
+.cajita-nombre-wrap { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.cajita-nombre-input { font-size: 15px; font-weight: 600; color: var(--nu-text); background: transparent; border: none; border-bottom: 1.5px dashed #c084fc; outline: none; width: 100%; font-family: 'DM Sans', sans-serif; padding: 2px 0; }
+.cajita-nombre-input:focus { border-bottom-color: var(--nu); }
+.cajita-saldo-wrap { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.cajita-saldo-display { font-size: 22px; font-weight: 600; font-family: 'DM Mono', monospace; color: var(--nu); cursor: pointer; border-bottom: 1.5px dashed transparent; }
+.cajita-saldo-display:hover { border-bottom-color: var(--nu); }
+.cajita-saldo-input { font-size: 20px; font-weight: 600; font-family: 'DM Mono', monospace; color: var(--nu); background: white; border: 1.5px solid var(--nu); border-radius: var(--radius); padding: 4px 8px; width: 140px; display: none; }
+.cajita-edit-hint { font-size: 10px; color: #9333ea; margin-top: -8px; margin-bottom: 8px; }
+.cajita-actions { display: flex; flex-direction: column; gap: 6px; }
+.cajita-row { display: flex; gap: 6px; }
+.cajita-input { flex: 1; padding: 7px 8px; font-size: 13px; font-family: 'DM Sans', sans-serif; border: 1px solid #c084fc; border-radius: var(--radius); background: white; color: var(--text); outline: none; }
+.cajita-hist { margin-top: 10px; max-height: 160px; overflow-y: auto; }
+.cajita-mov { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-top: 1px solid #e9d5ff; font-size: 12px; }
+.cajita-mov-nota { color: var(--text2); }
+.cajita-mov-val { font-family: 'DM Mono', monospace; font-weight: 500; }
+
+/* ── ALCANCÍA ── */
+.alc-saldo-wrap { display: flex; align-items: center; gap: 10px; }
+.alc-saldo-display { font-size: 28px; font-weight: 600; font-family: 'DM Mono', monospace; cursor: pointer; border-bottom: 1.5px dashed transparent; }
+.alc-saldo-display:hover { border-bottom-color: var(--text); }
+.alc-saldo-input { font-size: 22px; font-weight: 600; font-family: 'DM Mono', monospace; background: var(--surface2); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 4px 10px; width: 180px; display: none; }
+.edit-hint { font-size: 10px; color: var(--text3); margin-top: -6px; margin-bottom: 10px; }
+
+/* ── CONFIG ── */
+.config-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem; }
+.config-title { font-size: 13px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 14px; }
+.config-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* ── LOADING ── */
+#loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.92); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; gap: 12px; font-size: 14px; color: var(--text2); }
+.spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--nu); border-radius: 50%; animation: spin 0.7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 600px) {
+  .form-grid, .form-grid.three, .pago-grid, .config-grid { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+  .cajitas-grid { grid-template-columns: 1fr; }
+  th:nth-child(7), td:nth-child(7), th:nth-child(8), td:nth-child(8) { display: none; }
+  main { padding: 1rem; }
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
 </style>
 </head>
 <body>
@@ -162,8 +164,8 @@
   <span id="hoy-label" style="font-size:12px;color:var(--text3);margin-left:4px"></span>
   <span id="sync-status" style="font-size:12px;margin-left:8px;font-weight:500"></span>
   <div class="header-badges">
-    <span class="pill pill-nu">Nu · corte 28</span>
-    <span class="pill pill-bc">Bancolombia · corte 16</span>
+    <span class="pill pill-nu" id="badge-nu">Nu · corte 28</span>
+    <span class="pill pill-bc" id="badge-bc">Bancolombia · corte 16</span>
   </div>
 </header>
 
@@ -172,16 +174,18 @@
   <button onclick="showTab('agregar')">+ Agregar gasto</button>
   <button onclick="showTab('pagar')">Registrar pago</button>
   <button onclick="showTab('alcancia')">🐷 Alcancía</button>
+  <button onclick="showTab('cajitas')">💜 Cajitas</button>
   <button onclick="showTab('gastos')">Todos los gastos</button>
   <button onclick="showTab('ciclos')">Ciclos</button>
+  <button onclick="showTab('config')">⚙ Config</button>
 </nav>
 
 <main>
   <div id="resumen" class="section active"></div>
 
   <div id="agregar" class="section">
-    <div class="info-bar info-nu">Nu — corte día 28 · pago día 18 · quincena del 15 o 30</div>
-    <div class="info-bar info-bc">Bancolombia — corte día 16 · pago día 1 del mes siguiente · quincena del 30</div>
+    <div class="info-bar info-nu" id="info-nu-bar">Nu — corte día 28 · pago día 18 · quincena del 15 o 30</div>
+    <div class="info-bar info-bc" id="info-bc-bar">Bancolombia — corte día 16 · pago día 1 del mes siguiente · quincena del 30</div>
     <div class="form-card">
       <div class="form-grid three">
         <div class="field"><label>Tarjeta</label>
@@ -209,10 +213,7 @@
     <div class="pago-grid">
       <div class="pago-card pago-card-nu">
         <div class="pago-card-title">Nu</div>
-        <div class="saldo-display">
-          <div class="saldo-label">Saldo pendiente total</div>
-          <div class="saldo-valor saldo-nu" id="saldo-nu">$0</div>
-        </div>
+        <div class="saldo-display"><div class="saldo-label">Saldo pendiente total</div><div class="saldo-valor saldo-nu" id="saldo-nu">$0</div></div>
         <div class="field-sm"><label>Valor del pago</label><input type="number" id="pago-nu-val" placeholder="0" min="0"></div>
         <div class="field-sm"><label>Fecha del pago</label><input type="date" id="pago-nu-fecha"></div>
         <div class="field-sm" style="margin-bottom:12px"><label>Nota (opcional)</label><input type="text" id="pago-nu-nota" placeholder="Ej: Quinc. 15/04"></div>
@@ -222,10 +223,7 @@
       </div>
       <div class="pago-card pago-card-bc">
         <div class="pago-card-title">Bancolombia</div>
-        <div class="saldo-display">
-          <div class="saldo-label">Saldo pendiente total</div>
-          <div class="saldo-valor saldo-bc" id="saldo-bc">$0</div>
-        </div>
+        <div class="saldo-display"><div class="saldo-label">Saldo pendiente total</div><div class="saldo-valor saldo-bc" id="saldo-bc">$0</div></div>
         <div class="field-sm"><label>Valor del pago</label><input type="number" id="pago-bc-val" placeholder="0" min="0"></div>
         <div class="field-sm"><label>Fecha del pago</label><input type="date" id="pago-bc-fecha"></div>
         <div class="field-sm" style="margin-bottom:12px"><label>Nota (opcional)</label><input type="text" id="pago-bc-nota" placeholder="Ej: Quinc. 30/04"></div>
@@ -240,27 +238,29 @@
     <div style="display:flex;gap:10px;margin-bottom:1rem;flex-wrap:wrap;">
       <input type="text" id="filtro-desc" placeholder="🔍 Buscar descripción..." style="flex:1;min-width:160px;padding:8px 12px;font-size:13px;font-family:'DM Sans',sans-serif;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);outline:none;" oninput="renderTabla()">
       <select id="filtro-tc" style="padding:8px 12px;font-size:13px;font-family:'DM Sans',sans-serif;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);outline:none;" onchange="renderTabla()">
-        <option value="">Todas las tarjetas</option>
-        <option value="nu">Nu</option>
-        <option value="bc">Bancolombia</option>
+        <option value="">Todas las tarjetas</option><option value="nu">Nu</option><option value="bc">Bancolombia</option>
       </select>
       <select id="filtro-estado" style="padding:8px 12px;font-size:13px;font-family:'DM Sans',sans-serif;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);outline:none;" onchange="renderTabla()">
-        <option value="">Todos los estados</option>
-        <option value="pagado">Pagado</option>
-        <option value="pendiente">Pendiente</option>
+        <option value="">Todos los estados</option><option value="pagado">Pagado</option><option value="pendiente">Pendiente</option>
       </select>
     </div>
     <div id="gastos-content"></div>
   </div>
+
   <div id="ciclos" class="section"></div>
 
+  <!-- ALCANCÍA -->
   <div id="alcancia" class="section">
     <div class="form-card" style="margin-bottom:1rem">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.5rem">
         <span style="font-size:26px">🐷</span>
-        <div>
+        <div style="flex:1">
           <div style="font-size:13px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.04em">Alcancía para tarjetas</div>
-          <div style="font-size:28px;font-weight:600;font-family:'DM Mono',monospace" id="alcancia-saldo">$0</div>
+          <div class="alc-saldo-wrap">
+            <div id="alcancia-saldo-display" class="alc-saldo-display" onclick="toggleEditAlcancia()" title="Clic para editar saldo">$0</div>
+            <input type="number" id="alcancia-saldo-input" class="alc-saldo-input" placeholder="0" onkeydown="if(event.key==='Enter')guardarAjusteAlcancia()" onblur="guardarAjusteAlcancia()">
+          </div>
+          <div class="edit-hint">Clic en el saldo para editar directamente</div>
         </div>
         <div style="margin-left:auto;text-align:right">
           <div style="font-size:11px;color:var(--text3)">Total deuda tarjetas</div>
@@ -271,7 +271,6 @@
         <div id="alcancia-barra" style="height:100%;border-radius:100px;background:var(--green);transition:width .4s"></div>
       </div>
       <div id="alcancia-pct" style="font-size:11px;color:var(--text3);margin-bottom:1.25rem"></div>
-
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
         <div>
           <div style="font-size:13px;font-weight:600;color:var(--text2);margin-bottom:10px">➕ Abonar ahorro</div>
@@ -285,8 +284,7 @@
           <div style="font-size:13px;font-weight:600;color:var(--text2);margin-bottom:10px">💳 Usar para pagar tarjeta</div>
           <div class="field-sm"><label>Tarjeta</label>
             <select id="alc-pago-tc" style="width:100%;padding:8px 10px;font-size:13px;font-family:'DM Sans',sans-serif;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);outline:none;">
-              <option value="nu">Nu</option>
-              <option value="bc">Bancolombia</option>
+              <option value="nu">Nu</option><option value="bc">Bancolombia</option>
             </select>
           </div>
           <div class="field-sm"><label>Valor a pagar</label><input type="number" id="alc-pago-val" placeholder="0" min="0"></div>
@@ -297,10 +295,66 @@
         </div>
       </div>
     </div>
-
     <div class="form-card">
       <div style="font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:12px">Movimientos</div>
       <div id="alcancia-hist"></div>
+    </div>
+  </div>
+
+  <!-- CAJITAS -->
+  <div id="cajitas" class="section">
+    <div style="font-size:13px;color:var(--text2);margin-bottom:1rem;background:var(--nu-bg);border-left:3px solid var(--nu);padding:10px 14px;border-radius:var(--radius)">
+      💜 Estas cajitas son independientes. Para pagar una tarjeta desde aquí, primero transfiere a la <b>Alcancía de tarjetas</b>.
+    </div>
+    <div class="cajitas-grid" id="cajitas-grid"></div>
+
+    <!-- Transferir entre cajitas o a alcancía -->
+    <div class="form-card">
+      <div style="font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:14px">🔀 Transferir</div>
+      <div class="form-grid three">
+        <div class="field"><label>Origen</label>
+          <select id="transf-origen">
+            <option value="c0">Madre</option><option value="c1">Sandra</option>
+            <option value="c2">Jorge</option><option value="c3">Varios</option>
+          </select>
+        </div>
+        <div class="field"><label>Destino</label>
+          <select id="transf-destino">
+            <option value="c0">Madre</option><option value="c1">Sandra</option>
+            <option value="c2">Jorge</option><option value="c3">Varios</option>
+            <option value="alcancia">🐷 Alcancía de tarjetas</option>
+          </select>
+        </div>
+        <div class="field"><label>Valor</label><input type="number" id="transf-val" placeholder="0" min="0"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>Nota (opcional)</label><input type="text" id="transf-nota" placeholder="Ej: Para cubrir pago Nu"></div>
+        <div class="field"><label>Fecha</label><input type="date" id="transf-fecha"></div>
+      </div>
+      <button class="btn-primary" style="background:var(--nu)" onclick="transferirCajita()">Transferir</button>
+      <p class="msg" id="msg-transf" style="color:var(--green)"></p>
+    </div>
+  </div>
+
+  <!-- CONFIG -->
+  <div id="config" class="section">
+    <div class="config-card">
+      <div class="config-title">⚙ Configuración de fechas</div>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:1rem">Ajusta los días exactos de corte y pago de cada tarjeta según lo que te indique el banco.</div>
+      <div class="config-grid">
+        <div style="background:var(--nu-bg);border:1px solid #c084fc;border-radius:var(--radius);padding:1rem">
+          <div style="font-size:13px;font-weight:600;color:var(--nu-text);margin-bottom:12px">Nu</div>
+          <div class="field-sm"><label>Día de corte</label><input type="number" id="cfg-nu-corte" min="1" max="31" placeholder="28"></div>
+          <div class="field-sm"><label>Día de pago</label><input type="number" id="cfg-nu-pago" min="1" max="31" placeholder="18"></div>
+        </div>
+        <div style="background:var(--bc-bg);border:1px solid #e8c200;border-radius:var(--radius);padding:1rem">
+          <div style="font-size:13px;font-weight:600;color:var(--bc-text);margin-bottom:12px">Bancolombia</div>
+          <div class="field-sm"><label>Día de corte</label><input type="number" id="cfg-bc-corte" min="1" max="31" placeholder="16"></div>
+          <div class="field-sm"><label>Día de pago</label><input type="number" id="cfg-bc-pago" min="1" max="31" placeholder="1"></div>
+        </div>
+      </div>
+      <button class="btn-primary" style="margin-top:16px" onclick="guardarConfig()">Guardar configuración</button>
+      <p class="msg" id="msg-config" style="color:var(--green)"></p>
     </div>
   </div>
 </main>
@@ -323,57 +377,56 @@ const db = getFirestore(app);
 const DOC_ID = "datos_jorge";
 
 let gastos = [], pagos = [], alcancia = [];
+let cajitas = [
+  { id:'c0', nombre:'Madre',  movs:[] },
+  { id:'c1', nombre:'Sandra', movs:[] },
+  { id:'c2', nombre:'Jorge',  movs:[] },
+  { id:'c3', nombre:'Varios', movs:[] }
+];
+let config = { nu: { corte:28, pago:18, off:0 }, bc: { corte:16, pago:1, off:1 } };
 
-// Muestra estado de sincronización en el header
-function setSyncStatus(estado) {
-  let el = document.getElementById('sync-status');
+function setSyncStatus(e) {
+  const el = document.getElementById('sync-status');
   if (!el) return;
-  if (estado === 'guardando') { el.textContent = '⏳ Guardando...'; el.style.color = 'var(--amber)'; }
-  else if (estado === 'ok')   { el.textContent = '✓ Sincronizado'; el.style.color = 'var(--green)'; setTimeout(()=>el.textContent='', 3000); }
-  else if (estado === 'error'){ el.textContent = '⚠ Error al guardar'; el.style.color = 'var(--red)'; }
-  else { el.textContent = ''; }
+  if (e==='guardando') { el.textContent='⏳ Guardando...'; el.style.color='var(--amber)'; }
+  else if (e==='ok') { el.textContent='✓ Sincronizado'; el.style.color='var(--green)'; setTimeout(()=>el.textContent='',3000); }
+  else if (e==='error') { el.textContent='⚠ Error al guardar'; el.style.color='var(--red)'; }
+  else el.textContent='';
 }
 
 async function save() {
   setSyncStatus('guardando');
   try {
-    await setDoc(doc(db, "tarjetas", DOC_ID), { gastos, pagos, alcancia });
+    await setDoc(doc(db,"tarjetas",DOC_ID), { gastos, pagos, alcancia, cajitas, config });
     setSyncStatus('ok');
   } catch(e) {
-    console.error(e);
-    setSyncStatus('error');
-    // Fallback a localStorage
-    try { localStorage.setItem('tc_gastos', JSON.stringify(gastos)); localStorage.setItem('tc_pagos', JSON.stringify(pagos)); } catch(e2){}
+    console.error(e); setSyncStatus('error');
   }
 }
 
 async function cargarDatos() {
-  document.getElementById('loading-overlay').style.display = 'flex';
+  document.getElementById('loading-overlay').style.display='flex';
   try {
-    const snap = await getDoc(doc(db, "tarjetas", DOC_ID));
+    const snap = await getDoc(doc(db,"tarjetas",DOC_ID));
     if (snap.exists()) {
       const d = snap.data();
       gastos   = d.gastos   || [];
       pagos    = d.pagos    || [];
       alcancia = d.alcancia || [];
+      if (d.cajitas && d.cajitas.length===4) cajitas = d.cajitas;
+      if (d.config) {
+        config.nu = { ...config.nu, ...d.config.nu };
+        config.bc = { ...config.bc, ...d.config.bc };
+      }
     }
-  } catch(e) {
-    console.error(e);
-    // Fallback a localStorage si hay error
-    try { gastos = JSON.parse(localStorage.getItem('tc_gastos')||'[]'); } catch(e2){}
-    try { pagos  = JSON.parse(localStorage.getItem('tc_pagos') ||'[]'); } catch(e2){}
-  }
-  document.getElementById('loading-overlay').style.display = 'none';
+  } catch(e) { console.error(e); }
+  document.getElementById('loading-overlay').style.display='none';
   init();
 }
 
-const TC = {
-  nu:  { nombre:'Nu',           corte:28, pago:18, off:0 },
-  bc:  { nombre:'Bancolombia',  corte:16, pago:1,  off:1 }
-};
-
+// ── TAB ──────────────────────────────────────────────────────
 function showTab(id) {
-  document.querySelectorAll('nav button').forEach((b,i)=>b.classList.toggle('active',['resumen','agregar','pagar','alcancia','gastos','ciclos'][i]===id));
+  document.querySelectorAll('nav button').forEach((b,i)=>b.classList.toggle('active',['resumen','agregar','pagar','alcancia','cajitas','gastos','ciclos','config'][i]===id));
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   if(id==='resumen')  renderResumen();
@@ -381,16 +434,21 @@ function showTab(id) {
   if(id==='gastos')   renderTabla();
   if(id==='ciclos')   renderCiclos();
   if(id==='alcancia') renderAlcancia();
+  if(id==='cajitas')  renderCajitas();
+  if(id==='config')   renderConfig();
 }
 
+// ── HELPERS ──────────────────────────────────────────────────
+function TC() { return config; }
+
 function getCiclo(fecha, tc) {
-  const cfg=TC[tc], d=new Date(fecha+'T12:00:00');
+  const cfg = config[tc];
+  const d = new Date(fecha+'T12:00:00');
   let cm=d.getMonth(), ca=d.getFullYear();
   if(d.getDate()>=cfg.corte){cm++;if(cm>11){cm=0;ca++;}}
   const corte=new Date(ca,cm,cfg.corte);
   let pm=cm+cfg.off, pa=ca; if(pm>11){pm-=12;pa++;}
   let pago=new Date(pa,pm,cfg.pago);
-  // Si la fecha de pago ya pasó respecto al gasto, avanzar un mes
   if(pago<=d){pm++;if(pm>11){pm=0;pa++;}pago=new Date(pa,pm,cfg.pago);}
   let ql; if(cfg.pago<=5){let qm=pm-1,qa=pa;if(qm<0){qm=11;qa--;}ql=`30/${String(qm+1).padStart(2,'0')}`;}
   else ql=`15/${String(pm+1).padStart(2,'0')}`;
@@ -400,7 +458,12 @@ function getCiclo(fecha, tc) {
 function fmt(d){return d.toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric'});}
 function cop(n){return '$'+Math.round(n).toLocaleString('es-CO');}
 function saldoTC(tc){return Math.max(0,gastos.filter(g=>g.tc===tc).reduce((a,g)=>a+g.valor,0)-pagos.filter(p=>p.tc===tc).reduce((a,p)=>a+p.valor,0));}
+function saldoAlcancia(){return alcancia.reduce((a,m)=>a+m.valor,0);}
+function saldoCajita(idx){return (cajitas[idx].movs||[]).reduce((a,m)=>a+m.valor,0);}
 
+function today(){return new Date().toISOString().split('T')[0];}
+
+// ── GASTOS ───────────────────────────────────────────────────
 function agregarGasto() {
   const tc=document.getElementById('inp-tc').value;
   const fecha=document.getElementById('inp-fecha').value;
@@ -410,131 +473,88 @@ function agregarGasto() {
   const msg=document.getElementById('add-msg');
   if(!desc||!valor||!fecha){msg.style.color='var(--red)';msg.textContent='Completa todos los campos.';return;}
   const c=getCiclo(fecha,tc);
-  // Buscamos esta línea y le agregamos "pendiente: valor"
-  gastos.push({
-    id: Date.now(),
-    tc,
-    desc,
-    valor,
-    fecha,
-    cat,
-    cicloKey: c.key,
-    pagoDate: c.pago.toISOString().split('T')[0],
-    ql: c.ql,
-    pendiente: valor // <--- Agregamos esto para saber cuánto falta pagar de este gasto
-  });
+  gastos.push({id:Date.now(),tc,desc,valor,fecha,cat,cicloKey:c.key,pagoDate:c.pago.toISOString().split('T')[0],ql:c.ql,pendiente:valor});
   save();
   document.getElementById('inp-desc').value='';
   document.getElementById('inp-valor').value='';
   document.getElementById('inp-fecha').valueAsDate=new Date();
   msg.style.color='var(--green)';
-  msg.textContent=`✓ Registrado en ${TC[tc].nombre}. Pago: ${fmt(c.pago)} · quincena del ${c.ql}`;
+  msg.textContent=`✓ Registrado en ${config[tc].nombre||tc}. Pago: ${fmt(c.pago)} · quincena del ${c.ql}`;
   setTimeout(()=>msg.textContent='',5000);
 }
 
+// ── PAGOS ────────────────────────────────────────────────────
 function registrarPago(tc) {
-  let val = parseFloat(document.getElementById(`pago-${tc}-val`).value);
-  const fecha = document.getElementById(`pago-${tc}-fecha`).value;
-  const nota = document.getElementById(`pago-${tc}-nota`).value.trim() || `Pago ${TC[tc].nombre}`;
-  const msg = document.getElementById(`msg-${tc}`);
-
-  if (!val || !fecha) {
-    msg.style.color = 'var(--red)';
-    msg.textContent = 'Ingresa valor y fecha.';
-    return;
-  }
-
-  let abonoRestante = val;
-
-  // 1. Buscamos los gastos de esta tarjeta que aún tengan saldo pendiente
-  // Los ordenamos por fecha (el más viejo primero)
-  let gastosPendientes = gastos
-    .filter(g => g.tc === tc && (g.pendiente === undefined || g.pendiente > 0))
-    .sort((a, b) => a.fecha.localeCompare(b.fecha));
-
-  // 2. Repartimos el pago entre los gastos
-  gastosPendientes.forEach(g => {
-    if (g.pendiente === undefined) g.pendiente = g.valor; // Parche por si hay viejos
-    
-    if (abonoRestante > 0) {
-      if (abonoRestante >= g.pendiente) {
-        abonoRestante -= g.pendiente;
-        g.pendiente = 0; // Gasto totalmente pagado
-      } else {
-        g.pendiente -= abonoRestante;
-        abonoRestante = 0; // Se acabó el abono
-      }
-    }
-  });
-
-  // 3. Guardamos el registro del pago
-  pagos.push({ id: Date.now(), tc, valor: val, fecha, nota });
+  let val=parseFloat(document.getElementById(`pago-${tc}-val`).value);
+  const fecha=document.getElementById(`pago-${tc}-fecha`).value;
+  const nota=document.getElementById(`pago-${tc}-nota`).value.trim()||`Pago ${tc==='nu'?'Nu':'Bancolombia'}`;
+  const msg=document.getElementById(`msg-${tc}`);
+  if(!val||!fecha){msg.style.color='var(--red)';msg.textContent='Ingresa valor y fecha.';return;}
+  let resto=val;
+  gastos.filter(g=>g.tc===tc&&(g.pendiente===undefined||g.pendiente>0)).sort((a,b)=>a.fecha.localeCompare(b.fecha))
+    .forEach(g=>{
+      if(g.pendiente===undefined)g.pendiente=g.valor;
+      if(resto>0){if(resto>=g.pendiente){resto-=g.pendiente;g.pendiente=0;}else{g.pendiente-=resto;resto=0;}}
+    });
+  pagos.push({id:Date.now(),tc,valor:val,fecha,nota});
   save();
-
-  // 4. Limpiamos y actualizamos
-  document.getElementById(`pago-${tc}-val`).value = '';
-  msg.style.color = 'var(--green)';
-  msg.textContent = `✓ Pago procesado. ${abonoRestante > 0 ? 'Sobró saldo: ' + cop(abonoRestante) : ''}`;
-  
-  renderPagar();
-  renderResumen();
+  document.getElementById(`pago-${tc}-val`).value='';
+  msg.style.color='var(--green)';
+  msg.textContent=`✓ Pago procesado.${resto>0?' Sobró: '+cop(resto):''}`;
+  renderPagar(); renderResumen();
 }
 
-function borrarPago(id){
-  if(!confirm('¿Eliminar este pago?')) return;
-  pagos=pagos.filter(p=>p.id!==id);save();renderPagar();renderResumen();
-}
+function borrarPago(id){if(!confirm('¿Eliminar este pago?'))return;pagos=pagos.filter(p=>p.id!==id);save();renderPagar();renderResumen();}
 
 function renderPagar() {
-  const today=new Date().toISOString().split('T')[0];
   ['nu','bc'].forEach(tc=>{
     const s=saldoTC(tc);
     const el=document.getElementById(`saldo-${tc}`);
     el.textContent=cop(s);
     el.className='saldo-valor '+(s===0?'saldo-zero':'saldo-'+tc);
     const fi=document.getElementById(`pago-${tc}-fecha`);
-    if(!fi.value) fi.value=today;
+    if(!fi.value) fi.value=today();
     const hist=pagos.filter(p=>p.tc===tc).sort((a,b)=>b.fecha.localeCompare(a.fecha)).slice(0,8);
     const hEl=document.getElementById(`hist-${tc}`);
     if(!hist.length){hEl.innerHTML='';return;}
     hEl.innerHTML=`<div class="pago-hist-title">Pagos registrados</div>`+
       hist.map(p=>`<div class="pago-item">
         <div><div class="pago-item-info">${p.nota}</div><div class="pago-item-fecha">${p.fecha}</div></div>
-        <div style="display:flex;align-items:center;gap:6px">
-          <span class="pago-item-val">${cop(p.valor)}</span>
-          <button class="del-btn" onclick="borrarPago(${p.id})">✕</button>
-        </div>
+        <div style="display:flex;align-items:center;gap:6px"><span class="pago-item-val">${cop(p.valor)}</span>
+        <button class="del-btn" onclick="borrarPago(${p.id})">✕</button></div>
       </div>`).join('');
   });
 }
 
+// ── RESUMEN ──────────────────────────────────────────────────
 function renderResumen() {
-  const today=new Date(), ts=today.toISOString().split('T')[0];
+  const todayD=new Date(), ts=today();
   let html='';
   ['nu','bc'].forEach(tc=>{
-    const cfg=TC[tc], ch=getCiclo(ts,tc);
+    const cfg=config[tc];
+    const ch=getCiclo(ts,tc);
     const gtc=gastos.filter(g=>g.tc===tc);
     const gAct=gtc.filter(g=>g.cicloKey===ch.key);
     const totAct=gAct.reduce((a,g)=>a+g.valor,0);
     const saldo=saldoTC(tc);
     const totPagado=pagos.filter(p=>p.tc===tc).reduce((a,p)=>a+p.valor,0);
-    const dc=Math.max(0,Math.ceil((ch.corte-today)/86400000));
-    const dp=Math.max(0,Math.ceil((ch.pago-today)/86400000));
+    const dc=Math.max(0,Math.ceil((ch.corte-todayD)/86400000));
+    const dp=Math.max(0,Math.ceil((ch.pago-todayD)/86400000));
     const pc=tc==='nu'?'pill-nu':'pill-bc';
     const sc=saldo===0?'paid':'highlight';
     const ciclosMap={};
     gtc.forEach(g=>{if(!ciclosMap[g.cicloKey])ciclosMap[g.cicloKey]={total:0,n:0,pago:g.pagoDate,ql:g.ql};ciclosMap[g.cicloKey].total+=g.valor;ciclosMap[g.cicloKey].n++;});
     const rows=Object.keys(ciclosMap).sort().reverse().slice(0,4).map(k=>{
-      const c=ciclosMap[k],pd=new Date(c.pago+'T12:00:00'),pa=pd<today;
+      const c=ciclosMap[k],pd=new Date(c.pago+'T12:00:00'),pa=pd<todayD;
       return `<tr><td style="font-family:'DM Mono',monospace">${k}</td><td style="font-family:'DM Mono',monospace">${cop(c.total)}</td><td>${c.n}</td><td>${fmt(pd)}</td><td><span class="quinc">${c.ql}</span></td><td><span class="badge ${pa?'b-ok':'b-warn'}">${pa?'Pagado':'Pendiente'}</span></td></tr>`;
     }).join('');
     html+=`<div class="tc-block">
-      <div class="tc-title"><span class="pill ${pc}">${cfg.nombre}</span></div>
+      <div class="tc-title"><span class="pill ${pc}">${tc==='nu'?'Nu':'Bancolombia'}</span></div>
       <div class="grid-4">
         <div class="stat ${sc}"><div class="stat-label">Saldo pendiente</div><div class="stat-value">${cop(saldo)}</div><div class="stat-sub">${saldo===0?'Al día ✓':'Por pagar'}</div></div>
         <div class="stat"><div class="stat-label">Ciclo actual</div><div class="stat-value">${cop(totAct)}</div><div class="stat-sub">${gAct.length} gastos · corte en ${dc}d</div></div>
         <div class="stat"><div class="stat-label">Próximo pago</div><div class="stat-value">${dp>0?dp+'d':'Hoy'}</div><div class="stat-sub">${fmt(ch.pago)} · quinc. ${ch.ql}</div></div>
-        <div class="stat"><div class="stat-label">Total pagado</div><div class="stat-value">${cop(totPagado)}</div><div class="stat-sub">${pagos.filter(p=>p.tc===tc).length} pagos realizados</div></div>
+        <div class="stat"><div class="stat-label">Total pagado</div><div class="stat-value">${cop(totPagado)}</div><div class="stat-sub">${pagos.filter(p=>p.tc===tc).length} pagos</div></div>
       </div>
       ${rows?`<table><thead><tr><th>Ciclo</th><th>Total gastos</th><th>Items</th><th>Fecha pago</th><th>Quincena</th><th>Estado</th></tr></thead><tbody>${rows}</tbody></table>`:'<div class="empty">Sin gastos registrados.</div>'}
     </div><hr class="divider">`;
@@ -542,16 +562,14 @@ function renderResumen() {
   document.getElementById('resumen').innerHTML=html;
 }
 
-function delGasto(id){
-  if(!confirm('¿Eliminar este gasto?')) return;
-  gastos=gastos.filter(g=>g.id!==id);save();renderTabla();renderResumen();
-}
+// ── TABLA GASTOS ─────────────────────────────────────────────
+function delGasto(id){if(!confirm('¿Eliminar este gasto?'))return;gastos=gastos.filter(g=>g.id!==id);save();renderTabla();renderResumen();}
 
 function renderTabla() {
   const q=(document.getElementById('filtro-desc')||{}).value||'';
   const tcF=(document.getElementById('filtro-tc')||{}).value||'';
   const estF=(document.getElementById('filtro-estado')||{}).value||'';
-  const target=document.getElementById('gastos-content')||document.getElementById('gastos');
+  const target=document.getElementById('gastos-content');
   let data=[...gastos];
   if(q) data=data.filter(g=>g.desc.toLowerCase().includes(q.toLowerCase()));
   if(tcF) data=data.filter(g=>g.tc===tcF);
@@ -561,57 +579,49 @@ function renderTabla() {
   const sorted=[...data].sort((a,b)=>b.fecha.localeCompare(a.fecha));
   const rows=sorted.map(g=>{
     const pc=g.tc==='nu'?'b-nu':'b-bc';
-    const pendiente = g.pendiente !== undefined ? g.pendiente : g.valor;
-    const estadoTxt = pendiente === 0 ? '<span class="badge b-ok">Pagado</span>' : 
-                      pendiente < g.valor ? `<span class="badge b-warn">Debe ${cop(pendiente)}</span>` : 
-                      '<span class="badge b-warn">Pendiente</span>';
+    const pend=g.pendiente!==undefined?g.pendiente:g.valor;
+    const est=pend===0?'<span class="badge b-ok">Pagado</span>':pend<g.valor?`<span class="badge b-warn">Debe ${cop(pend)}</span>`:'<span class="badge b-warn">Pendiente</span>';
     return `<tr>
       <td style="font-family:'DM Mono',monospace;font-size:12px">${g.fecha}</td>
-      <td><span class="badge ${pc}">${TC[g.tc].nombre}</span></td>
-      <td>${g.desc}</td>
-      <td><span class="badge b-info">${g.cat}</span></td>
+      <td><span class="badge ${pc}">${g.tc==='nu'?'Nu':'Bancolombia'}</span></td>
+      <td>${g.desc}</td><td><span class="badge b-info">${g.cat}</span></td>
       <td style="font-family:'DM Mono',monospace">${cop(g.valor)}</td>
-      <td>${estadoTxt}</td>
+      <td>${est}</td>
       <td style="font-size:12px;color:var(--text2)">${g.pagoDate}</td>
       <td><span class="quinc">${g.ql}</span></td>
       <td><button class="del-btn" onclick="delGasto(${g.id})">✕</button></td>
     </tr>`;
   }).join('');
-  const totalPendiente = data.reduce((a,g)=>(a+(g.pendiente !== undefined ? g.pendiente : g.valor)),0);
+  const tot=data.reduce((a,g)=>a+(g.pendiente!==undefined?g.pendiente:g.valor),0);
   target.innerHTML=`<table>
     <thead><tr><th>Fecha</th><th>Tarjeta</th><th>Descripción</th><th>Cat.</th><th>Valor</th><th>Estado</th><th>Pago</th><th>Quincena</th><th></th></tr></thead>
     <tbody>${rows}</tbody>
-    <tfoot><tr><td colspan="4">Total Pendiente (filtrado)</td><td style="font-family:'DM Mono',monospace" colspan="5">${cop(totalPendiente)}</td></tr></tfoot>
+    <tfoot><tr><td colspan="4">Total Pendiente (filtrado)</td><td style="font-family:'DM Mono',monospace" colspan="5">${cop(tot)}</td></tr></tfoot>
   </table>`;
 }
 
+// ── CICLOS ───────────────────────────────────────────────────
 function renderCiclos() {
   let html='';
   ['nu','bc'].forEach(tc=>{
-    const cfg=TC[tc],today=new Date(),pc=tc==='nu'?'pill-nu':'pill-bc';
+    const todayD=new Date(),pc=tc==='nu'?'pill-nu':'pill-bc';
     const cm={};
     gastos.filter(g=>g.tc===tc).forEach(g=>{if(!cm[g.cicloKey])cm[g.cicloKey]={gastos:[],total:0,pago:g.pagoDate,ql:g.ql};cm[g.cicloKey].gastos.push(g);cm[g.cicloKey].total+=g.valor;});
     const keys=Object.keys(cm).sort().reverse();
-    html+=`<div class="tc-title"><span class="pill ${pc}">${cfg.nombre}</span><span style="font-size:13px;color:var(--text2);margin-left:auto">Saldo: <b style="font-family:'DM Mono',monospace">${cop(saldoTC(tc))}</b></span></div>`;
+    html+=`<div class="tc-title"><span class="pill ${pc}">${tc==='nu'?'Nu':'Bancolombia'}</span><span style="font-size:13px;color:var(--text2);margin-left:auto">Saldo: <b style="font-family:'DM Mono',monospace">${cop(saldoTC(tc))}</b></span></div>`;
     if(!keys.length){html+='<div class="empty">Sin ciclos registrados.</div>';}
     else keys.forEach(k=>{
-      const c=cm[k],pd=new Date(c.pago+'T12:00:00'),pa=pd<today;
-      
-      // Cálculo de abonos en el ciclo
-      const totalPendienteCiclo = c.gastos.reduce((a,g)=> a + (g.pendiente !== undefined ? g.pendiente : g.valor), 0);
-      const abonadoCiclo = c.total - totalPendienteCiclo;
-      const estadoCiclo = totalPendienteCiclo === 0 ? '<span class="badge b-ok">Pagado</span>' : 
-                          abonadoCiclo > 0 ? `<span class="badge b-warn">Abonado ${cop(abonadoCiclo)}</span>` : 
-                          '<span class="badge b-warn">Pendiente</span>';
-
+      const c=cm[k],pd=new Date(c.pago+'T12:00:00'),pa=pd<todayD;
+      const totPend=c.gastos.reduce((a,g)=>a+(g.pendiente!==undefined?g.pendiente:g.valor),0);
+      const abon=c.total-totPend;
+      const est=totPend===0?'<span class="badge b-ok">Pagado</span>':abon>0?`<span class="badge b-warn">Abonado ${cop(abon)}</span>`:'<span class="badge b-warn">Pendiente</span>';
       const cats={};c.gastos.forEach(g=>cats[g.cat]=(cats[g.cat]||0)+g.valor);
       const chips=Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([cat,v])=>`<span class="cat-chip">${cat} ${cop(v)}</span>`).join('');
-      
-      html+=`<div class="ciclo-card${totalPendienteCiclo===0?' ciclo-pagado':''}">
-        <div class="ciclo-top"><span class="ciclo-key">${k}</span>${estadoCiclo}</div>
+      html+=`<div class="ciclo-card${totPend===0?' ciclo-pagado':''}">
+        <div class="ciclo-top"><span class="ciclo-key">${k}</span>${est}</div>
         <div class="ciclo-meta">Pago: ${fmt(pd)} · Quincena: ${c.ql} · ${c.gastos.length} gastos</div>
         <div class="ciclo-total">${cop(c.total)}</div>
-        ${abonadoCiclo > 0 && totalPendienteCiclo > 0 ? `<div style="font-size:12px; color:var(--green); margin-bottom:8px;">Faltan ${cop(totalPendienteCiclo)} por pagar</div>` : ''}
+        ${abon>0&&totPend>0?`<div style="font-size:12px;color:var(--green);margin-bottom:8px">Faltan ${cop(totPend)} por pagar</div>`:''}
         <div class="cats">${chips}</div>
       </div>`;
     });
@@ -621,120 +631,318 @@ function renderCiclos() {
 }
 
 // ── ALCANCÍA ─────────────────────────────────────────────────
-function saldoAlcancia() {
-  return alcancia.reduce((a,m) => a + m.valor, 0);
+let editandoAlcancia = false;
+
+function toggleEditAlcancia() {
+  const disp=document.getElementById('alcancia-saldo-display');
+  const inp=document.getElementById('alcancia-saldo-input');
+  if(!editandoAlcancia){
+    inp.value=Math.round(saldoAlcancia());
+    inp.style.display='block'; disp.style.display='none';
+    inp.focus(); inp.select();
+    editandoAlcancia=true;
+  }
+}
+
+function guardarAjusteAlcancia() {
+  if(!editandoAlcancia) return;
+  const inp=document.getElementById('alcancia-saldo-input');
+  const nuevoSaldo=parseFloat(inp.value);
+  const disp=document.getElementById('alcancia-saldo-display');
+  if(!isNaN(nuevoSaldo)){
+    const actual=saldoAlcancia();
+    const diff=Math.round(nuevoSaldo-actual);
+    if(diff!==0){
+      alcancia.push({id:Date.now(),tipo:'ajuste',valor:diff,nota:`Ajuste manual (${diff>0?'+':''}${cop(diff)})`,fecha:today()});
+      save();
+    }
+  }
+  inp.style.display='none'; disp.style.display='block';
+  editandoAlcancia=false;
+  renderAlcancia();
 }
 
 function abonarAlcancia() {
-  const val = parseFloat(document.getElementById('alc-abono-val').value);
-  const nota = document.getElementById('alc-abono-nota').value.trim() || 'Ahorro';
-  const fecha = document.getElementById('alc-abono-fecha').value;
-  const msg = document.getElementById('msg-alc-abono');
-  if (!val || !fecha) { msg.style.color='var(--red)'; msg.textContent='Ingresa valor y fecha.'; return; }
-  alcancia.push({ id: Date.now(), tipo: 'abono', valor: val, nota, fecha });
+  const val=parseFloat(document.getElementById('alc-abono-val').value);
+  const nota=document.getElementById('alc-abono-nota').value.trim()||'Ahorro';
+  const fecha=document.getElementById('alc-abono-fecha').value;
+  const msg=document.getElementById('msg-alc-abono');
+  if(!val||!fecha){msg.style.color='var(--red)';msg.textContent='Ingresa valor y fecha.';return;}
+  alcancia.push({id:Date.now(),tipo:'abono',valor:val,nota,fecha});
   save();
-  document.getElementById('alc-abono-val').value = '';
-  document.getElementById('alc-abono-nota').value = '';
-  msg.style.color='var(--green)'; msg.textContent=`✓ ${cop(val)} guardados en la alcancía`;
-  setTimeout(()=>msg.textContent='', 4000);
+  document.getElementById('alc-abono-val').value='';
+  document.getElementById('alc-abono-nota').value='';
+  msg.style.color='var(--green)';msg.textContent=`✓ ${cop(val)} guardados en la alcancía`;
+  setTimeout(()=>msg.textContent='',4000);
   renderAlcancia();
 }
 
 function pagarDesdeAlcancia() {
-  const tc = document.getElementById('alc-pago-tc').value;
-  const val = parseFloat(document.getElementById('alc-pago-val').value);
-  const nota = document.getElementById('alc-pago-nota').value.trim() || `Pago ${TC[tc].nombre}`;
-  const fecha = document.getElementById('alc-pago-fecha').value;
-  const msg = document.getElementById('msg-alc-pago');
-  if (!val || !fecha) { msg.style.color='var(--red)'; msg.textContent='Ingresa valor y fecha.'; return; }
-  const saldo = saldoAlcancia();
-  if (val > saldo) { msg.style.color='var(--red)'; msg.textContent=`Saldo insuficiente. Alcancía: ${cop(saldo)}`; return; }
-
-  // Descontar de alcancía (valor negativo)
-  alcancia.push({ id: Date.now(), tipo: 'pago', valor: -val, nota: `💳 ${TC[tc].nombre}: ${nota}`, fecha, tc });
-
-  // Registrar el pago en la tarjeta también
-  let abonoRestante = val;
-  let gastosPendientes = gastos
-    .filter(g => g.tc === tc && (g.pendiente === undefined || g.pendiente > 0))
-    .sort((a, b) => a.fecha.localeCompare(b.fecha));
-  gastosPendientes.forEach(g => {
-    if (g.pendiente === undefined) g.pendiente = g.valor;
-    if (abonoRestante > 0) {
-      if (abonoRestante >= g.pendiente) { abonoRestante -= g.pendiente; g.pendiente = 0; }
-      else { g.pendiente -= abonoRestante; abonoRestante = 0; }
-    }
-  });
-  pagos.push({ id: Date.now()+1, tc, valor: val, fecha, nota });
+  const tc=document.getElementById('alc-pago-tc').value;
+  const val=parseFloat(document.getElementById('alc-pago-val').value);
+  const nota=document.getElementById('alc-pago-nota').value.trim()||`Pago ${tc==='nu'?'Nu':'Bancolombia'}`;
+  const fecha=document.getElementById('alc-pago-fecha').value;
+  const msg=document.getElementById('msg-alc-pago');
+  if(!val||!fecha){msg.style.color='var(--red)';msg.textContent='Ingresa valor y fecha.';return;}
+  const saldo=saldoAlcancia();
+  if(val>saldo){msg.style.color='var(--red)';msg.textContent=`Saldo insuficiente. Alcancía: ${cop(saldo)}`;return;}
+  alcancia.push({id:Date.now(),tipo:'pago',valor:-val,nota:`💳 ${tc==='nu'?'Nu':'Bancolombia'}: ${nota}`,fecha,tc});
+  let resto=val;
+  gastos.filter(g=>g.tc===tc&&(g.pendiente===undefined||g.pendiente>0)).sort((a,b)=>a.fecha.localeCompare(b.fecha))
+    .forEach(g=>{
+      if(g.pendiente===undefined)g.pendiente=g.valor;
+      if(resto>0){if(resto>=g.pendiente){resto-=g.pendiente;g.pendiente=0;}else{g.pendiente-=resto;resto=0;}}
+    });
+  pagos.push({id:Date.now()+1,tc,valor:val,fecha,nota});
   save();
-
-  document.getElementById('alc-pago-val').value = '';
-  document.getElementById('alc-pago-nota').value = '';
-  msg.style.color='var(--green)'; msg.textContent=`✓ Pagado ${cop(val)} a ${TC[tc].nombre} desde la alcancía`;
-  setTimeout(()=>msg.textContent='', 4000);
-  renderAlcancia();
-  renderResumen();
+  document.getElementById('alc-pago-val').value='';
+  document.getElementById('alc-pago-nota').value='';
+  msg.style.color='var(--green)';msg.textContent=`✓ Pagado ${cop(val)} a ${tc==='nu'?'Nu':'Bancolombia'} desde la alcancía`;
+  setTimeout(()=>msg.textContent='',4000);
+  renderAlcancia(); renderResumen();
 }
 
-function borrarMovAlcancia(id) {
-  if (!confirm('¿Eliminar este movimiento?')) return;
-  alcancia = alcancia.filter(m => m.id !== id);
-  save(); renderAlcancia();
-}
+function borrarMovAlcancia(id){if(!confirm('¿Eliminar este movimiento?'))return;alcancia=alcancia.filter(m=>m.id!==id);save();renderAlcancia();}
 
 function renderAlcancia() {
-  const saldo = saldoAlcancia();
-  const deudaTotal = saldoTC('nu') + saldoTC('bc');
-  document.getElementById('alcancia-saldo').textContent = cop(saldo);
-  document.getElementById('alcancia-deuda').textContent = cop(deudaTotal);
-  const pct = deudaTotal > 0 ? Math.min(100, Math.round((saldo / deudaTotal) * 100)) : 100;
-  document.getElementById('alcancia-barra').style.width = pct + '%';
-  document.getElementById('alcancia-barra').style.background = pct >= 100 ? 'var(--green)' : pct >= 50 ? 'var(--amber)' : 'var(--red)';
-  document.getElementById('alcancia-pct').textContent = deudaTotal > 0
-    ? `Tienes el ${pct}% de la deuda total cubierta (${cop(saldo)} de ${cop(deudaTotal)})`
-    : '¡Sin deudas pendientes! 🎉';
-
-  const hist = [...alcancia].sort((a,b) => b.fecha.localeCompare(a.fecha));
-  if (!hist.length) {
-    document.getElementById('alcancia-hist').innerHTML = '<div class="empty">Sin movimientos aún.</div>';
-    return;
-  }
-  document.getElementById('alcancia-hist').innerHTML = hist.map(m => `
+  const saldo=saldoAlcancia();
+  const deudaTotal=saldoTC('nu')+saldoTC('bc');
+  document.getElementById('alcancia-saldo-display').textContent=cop(saldo);
+  document.getElementById('alcancia-deuda').textContent=cop(deudaTotal);
+  const pct=deudaTotal>0?Math.min(100,Math.round((saldo/deudaTotal)*100)):100;
+  document.getElementById('alcancia-barra').style.width=pct+'%';
+  document.getElementById('alcancia-barra').style.background=pct>=100?'var(--green)':pct>=50?'var(--amber)':'var(--red)';
+  document.getElementById('alcancia-pct').textContent=deudaTotal>0?`Tienes el ${pct}% de la deuda cubierta (${cop(saldo)} de ${cop(deudaTotal)})`:'¡Sin deudas pendientes! 🎉';
+  const hist=[...alcancia].sort((a,b)=>b.fecha.localeCompare(a.fecha));
+  if(!hist.length){document.getElementById('alcancia-hist').innerHTML='<div class="empty">Sin movimientos aún.</div>';return;}
+  document.getElementById('alcancia-hist').innerHTML=hist.map(m=>`
     <div class="pago-item">
-      <div>
-        <div class="pago-item-info">${m.nota}</div>
-        <div class="pago-item-fecha">${m.fecha}</div>
-      </div>
+      <div><div class="pago-item-info">${m.nota}</div><div class="pago-item-fecha">${m.fecha}</div></div>
       <div style="display:flex;align-items:center;gap:8px">
         <span style="font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:${m.valor>0?'var(--green)':'var(--red)'}">
-          ${m.valor>0?'+':''}${cop(m.valor)}
-        </span>
+          ${m.valor>0?'+':''}${cop(m.valor)}</span>
         <button class="del-btn" onclick="borrarMovAlcancia(${m.id})">✕</button>
       </div>
     </div>`).join('');
 }
 
+// ── CAJITAS ──────────────────────────────────────────────────
+function renderCajitas() {
+  // Actualiza opciones de transferencia con nombres actuales
+  const origen=document.getElementById('transf-origen');
+  const destino=document.getElementById('transf-destino');
+  if(origen){
+    cajitas.forEach((c,i)=>{ origen.options[i].text=c.nombre; destino.options[i].text=c.nombre; });
+  }
+
+  const grid=document.getElementById('cajitas-grid');
+  grid.innerHTML=cajitas.map((c,idx)=>{
+    const saldo=saldoCajita(idx);
+    const hist=[...(c.movs||[])].sort((a,b)=>b.fecha.localeCompare(a.fecha)).slice(0,8);
+    const histHtml=hist.length?hist.map(m=>`
+      <div class="cajita-mov">
+        <div><div class="cajita-mov-nota">${m.nota}</div><div style="font-size:10px;color:var(--text3)">${m.fecha}</div></div>
+        <div style="display:flex;align-items:center;gap:4px">
+          <span class="cajita-mov-val" style="color:${m.valor>0?'var(--green)':'var(--red)'}">${m.valor>0?'+':''}${cop(m.valor)}</span>
+          <button class="del-btn" onclick="borrarMovCajita(${idx},${m.id})" style="font-size:12px">✕</button>
+        </div>
+      </div>`).join(''):'<div style="font-size:12px;color:var(--text3);padding:8px 0">Sin movimientos</div>';
+    return `<div class="cajita-card">
+      <div class="cajita-nombre-wrap">
+        <span style="font-size:18px">💜</span>
+        <input class="cajita-nombre-input" value="${c.nombre}" onblur="guardarNombreCajita(${idx},this.value)" onkeydown="if(event.key==='Enter')this.blur()" title="Clic para editar nombre">
+      </div>
+      <div class="cajita-saldo-wrap">
+        <div class="cajita-saldo-display" onclick="toggleEditCajita(${idx})" title="Clic para editar saldo">${cop(saldo)}</div>
+        <input type="number" class="cajita-saldo-input" id="cajita-inp-${idx}" placeholder="0"
+          onkeydown="if(event.key==='Enter')guardarAjusteCajita(${idx})" onblur="guardarAjusteCajita(${idx})">
+      </div>
+      <div class="cajita-edit-hint">Clic en el saldo para editar</div>
+      <div class="cajita-actions">
+   <div class="cajita-row">
+  <input type="number" class="cajita-input" id="cajita-val-${idx}" placeholder="Valor">
+</div>
+<div class="cajita-row">
+  <input type="text" class="cajita-input" id="cajita-nota-${idx}" placeholder="Nota">
+</div>
+<div class="cajita-row">
+  <input type="date" class="cajita-input" id="cajita-fecha-${idx}" style="flex:1">
+</div>
+<p class="msg" id="cajita-msg-${idx}" style="font-size:12px;min-height:14px"></p>
+      </div>
+      <div class="cajita-hist">${histHtml}</div>
+    </div>`;
+  }).join('');
+
+  // Poner fecha de hoy en los inputs de cajitas
+  cajitas.forEach((_,idx)=>{
+    const fi=document.getElementById(`cajita-fecha-${idx}`);
+    if(fi&&!fi.value) fi.value=today();
+  });
+
+  // Fecha de transferencia
+  const tf=document.getElementById('transf-fecha');
+  if(tf&&!tf.value) tf.value=today();
+}
+
+function guardarNombreCajita(idx, nombre) {
+  if(!nombre.trim()) return;
+  cajitas[idx].nombre=nombre.trim();
+  save();
+  // Actualiza opciones del select de transferencia
+  const origen=document.getElementById('transf-origen');
+  const destino=document.getElementById('transf-destino');
+  if(origen){ origen.options[idx].text=nombre.trim(); destino.options[idx].text=nombre.trim(); }
+}
+
+function toggleEditCajita(idx) {
+  const card=document.querySelectorAll('.cajita-card')[idx];
+  const disp=card.querySelector('.cajita-saldo-display');
+  const inp=document.getElementById(`cajita-inp-${idx}`);
+  inp.value=Math.round(saldoCajita(idx));
+  inp.style.display='block'; disp.style.display='none';
+  inp.focus(); inp.select();
+}
+
+function guardarAjusteCajita(idx) {
+  const card=document.querySelectorAll('.cajita-card')[idx];
+  const disp=card.querySelector('.cajita-saldo-display');
+  const inp=document.getElementById(`cajita-inp-${idx}`);
+  const nuevoSaldo=parseFloat(inp.value);
+  if(!isNaN(nuevoSaldo)){
+    const actual=saldoCajita(idx);
+    const diff=Math.round(nuevoSaldo-actual);
+    if(diff!==0){
+      if(!cajitas[idx].movs) cajitas[idx].movs=[];
+      cajitas[idx].movs.push({id:Date.now(),valor:diff,nota:`Ajuste manual (${diff>0?'+':''}${cop(diff)})`,fecha:today()});
+      save();
+    }
+  }
+  inp.style.display='none'; disp.style.display='block';
+  renderCajitas();
+}
+
+function moverCajita(idx, tipo) {
+  const val=parseFloat(document.getElementById(`cajita-val-${idx}`).value);
+  const nota=document.getElementById(`cajita-nota-${idx}`).value.trim()||(tipo==='abono'?'Abono':'Retiro');
+  const fecha=document.getElementById(`cajita-fecha-${idx}`).value;
+  const msg=document.getElementById(`cajita-msg-${idx}`);
+  if(!val||!fecha){msg.style.color='var(--red)';msg.textContent='Ingresa valor y fecha.';setTimeout(()=>msg.textContent='',3000);return;}
+  if(tipo==='retiro'&&val>saldoCajita(idx)){msg.style.color='var(--red)';msg.textContent='Saldo insuficiente.';setTimeout(()=>msg.textContent='',3000);return;}
+  if(!cajitas[idx].movs) cajitas[idx].movs=[];
+  cajitas[idx].movs.push({id:Date.now(),valor:tipo==='abono'?val:-val,nota,fecha});
+  save();
+  document.getElementById(`cajita-val-${idx}`).value='';
+  document.getElementById(`cajita-nota-${idx}`).value='';
+  msg.style.color='var(--green)';msg.textContent=`✓ ${tipo==='abono'?'+':'-'}${cop(val)}`;
+  setTimeout(()=>msg.textContent='',3000);
+  renderCajitas();
+}
+
+function borrarMovCajita(idx,id){
+  if(!confirm('¿Eliminar este movimiento?'))return;
+  cajitas[idx].movs=(cajitas[idx].movs||[]).filter(m=>m.id!==id);
+  save(); renderCajitas();
+}
+
+function transferirCajita() {
+  const origen=document.getElementById('transf-origen').value;
+  const destino=document.getElementById('transf-destino').value;
+  const val=parseFloat(document.getElementById('transf-val').value);
+  const nota=document.getElementById('transf-nota').value.trim()||'Transferencia';
+  const fecha=document.getElementById('transf-fecha').value;
+  const msg=document.getElementById('msg-transf');
+  if(!val||!fecha){msg.style.color='var(--red)';msg.textContent='Ingresa valor y fecha.';return;}
+  if(origen===destino){msg.style.color='var(--red)';msg.textContent='Origen y destino deben ser diferentes.';return;}
+  // Validar saldo origen
+  const idxO=cajitas.findIndex(c=>c.id===origen);
+  if(idxO<0){msg.style.color='var(--red)';msg.textContent='Selecciona un origen válido.';return;}
+  if(val>saldoCajita(idxO)){msg.style.color='var(--red)';msg.textContent=`Saldo insuficiente en ${cajitas[idxO].nombre}.`;return;}
+  // Salida del origen
+  if(!cajitas[idxO].movs) cajitas[idxO].movs=[];
+  const nomDest=destino==='alcancia'?'Alcancía de tarjetas':cajitas.find(c=>c.id===destino)?.nombre||destino;
+  cajitas[idxO].movs.push({id:Date.now(),valor:-val,nota:`→ ${nomDest}: ${nota}`,fecha});
+  // Entrada al destino
+  if(destino==='alcancia'){
+    alcancia.push({id:Date.now()+1,tipo:'abono',valor:val,nota:`💜 ${cajitas[idxO].nombre}: ${nota}`,fecha});
+  } else {
+    const idxD=cajitas.findIndex(c=>c.id===destino);
+    if(!cajitas[idxD].movs) cajitas[idxD].movs=[];
+    cajitas[idxD].movs.push({id:Date.now()+2,valor:val,nota:`← ${cajitas[idxO].nombre}: ${nota}`,fecha});
+  }
+  save();
+  document.getElementById('transf-val').value='';
+  document.getElementById('transf-nota').value='';
+  msg.style.color='var(--green)';msg.textContent=`✓ ${cop(val)} transferidos de ${cajitas[idxO].nombre} a ${nomDest}`;
+  setTimeout(()=>msg.textContent='',5000);
+  renderCajitas();
+}
+
+// ── CONFIG ───────────────────────────────────────────────────
+function renderConfig() {
+  document.getElementById('cfg-nu-corte').value=config.nu.corte;
+  document.getElementById('cfg-nu-pago').value=config.nu.pago;
+  document.getElementById('cfg-bc-corte').value=config.bc.corte;
+  document.getElementById('cfg-bc-pago').value=config.bc.pago;
+}
+
+function guardarConfig() {
+  const nuCorte=parseInt(document.getElementById('cfg-nu-corte').value);
+  const nuPago=parseInt(document.getElementById('cfg-nu-pago').value);
+  const bcCorte=parseInt(document.getElementById('cfg-bc-corte').value);
+  const bcPago=parseInt(document.getElementById('cfg-bc-pago').value);
+  const msg=document.getElementById('msg-config');
+  if([nuCorte,nuPago,bcCorte,bcPago].some(v=>isNaN(v)||v<1||v>31)){msg.style.color='var(--red)';msg.textContent='Valores inválidos (1-31).';return;}
+  config.nu.corte=nuCorte; config.nu.pago=nuPago;
+  config.bc.corte=bcCorte; config.bc.pago=bcPago;
+  // off para Bancolombia: si pago es <= 5 se asume que es el mes siguiente al corte
+  config.bc.off=bcPago<=5?1:0;
+  save();
+  // Actualizar badges y barras de info
+  document.getElementById('badge-nu').textContent=`Nu · corte ${nuCorte}`;
+  document.getElementById('badge-bc').textContent=`Bancolombia · corte ${bcCorte}`;
+  document.getElementById('info-nu-bar').textContent=`Nu — corte día ${nuCorte} · pago día ${nuPago}`;
+  document.getElementById('info-bc-bar').textContent=`Bancolombia — corte día ${bcCorte} · pago día ${bcPago}`;
+  msg.style.color='var(--green)';msg.textContent='✓ Configuración guardada';
+  setTimeout(()=>msg.textContent='',4000);
+}
+
+// ── INIT ─────────────────────────────────────────────────────
 function init() {
   document.getElementById('inp-fecha').valueAsDate=new Date();
   document.getElementById('pago-nu-fecha').valueAsDate=new Date();
   document.getElementById('pago-bc-fecha').valueAsDate=new Date();
   document.getElementById('alc-abono-fecha').valueAsDate=new Date();
   document.getElementById('alc-pago-fecha').valueAsDate=new Date();
-  const hoyLabel=document.getElementById('hoy-label');
-  if(hoyLabel) hoyLabel.textContent=new Date().toLocaleDateString('es-CO',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
+  const hoy=document.getElementById('hoy-label');
+  if(hoy) hoy.textContent=new Date().toLocaleDateString('es-CO',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
+  // Aplicar config a badges
+  document.getElementById('badge-nu').textContent=`Nu · corte ${config.nu.corte}`;
+  document.getElementById('badge-bc').textContent=`Bancolombia · corte ${config.bc.corte}`;
+  document.getElementById('info-nu-bar').textContent=`Nu — corte día ${config.nu.corte} · pago día ${config.nu.pago}`;
+  document.getElementById('info-bc-bar').textContent=`Bancolombia — corte día ${config.bc.corte} · pago día ${config.bc.pago}`;
   renderResumen();
 }
 
-// Exponer funciones al scope global para que funcionen los onclick del HTML
-window.showTab = showTab;
-window.agregarGasto = agregarGasto;
-window.registrarPago = registrarPago;
-window.borrarPago = borrarPago;
-window.delGasto = delGasto;
-window.renderTabla = renderTabla;
-window.abonarAlcancia = abonarAlcancia;
-window.pagarDesdeAlcancia = pagarDesdeAlcancia;
-window.borrarMovAlcancia = borrarMovAlcancia;
+// Exponer al scope global
+window.showTab=showTab;
+window.agregarGasto=agregarGasto;
+window.registrarPago=registrarPago;
+window.borrarPago=borrarPago;
+window.delGasto=delGasto;
+window.renderTabla=renderTabla;
+window.abonarAlcancia=abonarAlcancia;
+window.pagarDesdeAlcancia=pagarDesdeAlcancia;
+window.borrarMovAlcancia=borrarMovAlcancia;
+window.toggleEditAlcancia=toggleEditAlcancia;
+window.guardarAjusteAlcancia=guardarAjusteAlcancia;
+window.guardarNombreCajita=guardarNombreCajita;
+window.toggleEditCajita=toggleEditCajita;
+window.guardarAjusteCajita=guardarAjusteCajita;
+window.moverCajita=moverCajita;
+window.borrarMovCajita=borrarMovCajita;
+window.transferirCajita=transferirCajita;
+window.guardarConfig=guardarConfig;
 
 cargarDatos();
 </script>
